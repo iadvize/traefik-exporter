@@ -3,3 +3,4 @@
 /.tarballs
 /traefik_exporter
 *.tar.gz
+vendor/
