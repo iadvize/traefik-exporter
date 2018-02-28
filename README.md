@@ -24,7 +24,7 @@ make
 | traefik_request_response_time_total | Cummulated Traefik response time | |
 | traefik_request_response_time_avg | Average Traefik response time | |
 
-#### Flags
+### Flags
 
 ```bash
 ./traefik_exporter --help
