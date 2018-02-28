@@ -11,6 +11,22 @@ make
 ./traefik_exporter [flags]
 ```
 
+## Install
+
+### Using Docker
+
+You can deploy this exporter using the [iadvize/traefik-exporter](https://registry.hub.docker.com/u/iadvize/traefik-exporter/) Docker image.
+
+For example:
+
+```bash
+docker pull traefik
+docker pull iadvize/traefik-exporter
+
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name traefik traefik --docker --web --web.address :8080
+docker run -d -p 9000:9000 iadvize/traefik-exporter -traefik=http://traefik:8080/health
+```
+
 ## Documentation
 
 ### Exported Metrics
@@ -49,22 +65,6 @@ Value of 1 mean that all nodes for the service are passing. Value of 0 mean no n
 __How many request Traefik is currently handling ?__
 
     sum by (statusCode)(traefik_request_count_current)
-
-## Install
-
-### Using Docker
-
-You can deploy this exporter using the [iadvize/traefik-exporter](https://registry.hub.docker.com/u/iadvize/traefik-exporter/) Docker image.
-
-For example:
-
-```bash
-docker pull traefik
-docker pull iadvize/traefik-exporter
-
-docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name traefik traefik --docker --web --web.address :8080
-docker run -d -p 9000:9000 iadvize/traefik-exporter -traefik=http://traefik:8080/health
-```
 
 ## Contribute
 
