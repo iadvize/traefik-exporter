@@ -1,4 +1,5 @@
-# Traefik Exporter [![Build Status](https://travis-ci.org/iadvize/traefik_exporter.svg)][travis]
+Traefik Exporter
+================
 
 Export Traefik service health to Prometheus.
 
