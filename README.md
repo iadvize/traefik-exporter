@@ -1,7 +1,8 @@
 # Traefik Exporter [![Build Status](https://travis-ci.org/iadvize/traefik_exporter.svg)][travis]
 
-
 Export Traefik service health to Prometheus.
+
+## Examples
 
 To run it:
 
@@ -10,7 +11,9 @@ make
 ./traefik_exporter [flags]
 ```
 
-## Exported Metrics
+## Documentation
+
+### Exported Metrics
 
 | Metric | Meaning | Labels |
 | ------ | ------- | ------ |
@@ -21,7 +24,7 @@ make
 | traefik_request_response_time_total | Cummulated Traefik response time | |
 | traefik_request_response_time_avg | Average Traefik response time | |
 
-### Flags
+#### Flags
 
 ```bash
 ./traefik_exporter --help
@@ -35,7 +38,7 @@ make
 * __`-web.listen-address`:__ Address to listen on for web interface and telemetry. (default `:9000`)
 * __`-web.telemetry-path`:__ Path under which to expose metrics. (default `/metrics`)
 
-## Useful Queries
+### Useful Queries
 
 __Are every Traefik instances up ?__
 
@@ -47,7 +50,9 @@ __How many request Traefik is currently handling ?__
 
     sum by (statusCode)(traefik_request_count_current)
 
-## Using Docker
+## Install
+
+### Using Docker
 
 You can deploy this exporter using the [iadvize/traefik-exporter](https://registry.hub.docker.com/u/iadvize/traefik-exporter/) Docker image.
 
@@ -61,6 +66,6 @@ docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name traefik traefi
 docker run -d -p 9000:9000 iadvize/traefik-exporter -traefik=http://traefik:8080/health
 ```
 
+## Contribute
 
-[hub]: https://hub.docker.com/r/iadvize/traefik-exporter/
-[travis]: https://travis-ci.org/iadvize/traefik_exporter
+Look at contribution guidelines here : [CONTRIBUTING.md](CONTRIBUTING.md)
