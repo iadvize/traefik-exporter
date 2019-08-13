@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/log"
 	"github.com/prometheus/common/version"
 )
@@ -216,9 +217,10 @@ func main() {
 	exporter := NewExporter(*traefikAddr, *timeout*time.Second)
 	prometheus.MustRegister(exporter)
 	prometheus.Unregister(prometheus.NewGoCollector())
-	prometheus.Unregister(prometheus.NewProcessCollector(os.Getpid(), ""))
+	p := prometheus.ProcessCollectorOpts{}
+	prometheus.Unregister(prometheus.NewProcessCollector(p))
 
-	http.Handle(*metricsPath, prometheus.UninstrumentedHandler())
+	http.Handle(*metricsPath, promhttp.Handler())
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(`<html>
              <head><title>Traefik Exporter</title></head>
